@@ -9,19 +9,25 @@
 /* Begin PBXBuildFile section */
 		9F44391A2C2302CF00C87E38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4439192C2302CF00C87E38 /* AppDelegate.swift */; };
 		9F44391C2C2302CF00C87E38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F44391B2C2302CF00C87E38 /* SceneDelegate.swift */; };
-		9F44391E2C2302CF00C87E38 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F44391D2C2302CF00C87E38 /* ViewController.swift */; };
+		9F44391E2C2302CF00C87E38 /* NotesTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F44391D2C2302CF00C87E38 /* NotesTableController.swift */; };
 		9F4439232C2302D000C87E38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F4439222C2302D000C87E38 /* Assets.xcassets */; };
 		9F4439262C2302D000C87E38 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 9F4439252C2302D000C87E38 /* Base */; };
+		9F4439332C23103400C87E38 /* NotesTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4439322C23103400C87E38 /* NotesTable.swift */; };
+		9F4439352C23106100C87E38 /* ViewCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4439342C23106100C87E38 /* ViewCode.swift */; };
+		9F4439372C23160400C87E38 /* NotesTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4439362C23160400C87E38 /* NotesTableCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9F4439162C2302CF00C87E38 /* notes-clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "notes-clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F4439192C2302CF00C87E38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F44391B2C2302CF00C87E38 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9F44391D2C2302CF00C87E38 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9F44391D2C2302CF00C87E38 /* NotesTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesTableController.swift; sourceTree = "<group>"; };
 		9F4439222C2302D000C87E38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F4439252C2302D000C87E38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F4439272C2302D000C87E38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F4439322C23103400C87E38 /* NotesTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesTable.swift; sourceTree = "<group>"; };
+		9F4439342C23106100C87E38 /* ViewCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCode.swift; sourceTree = "<group>"; };
+		9F4439362C23160400C87E38 /* NotesTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesTableCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +60,57 @@
 		9F4439182C2302CF00C87E38 /* notes-clone */ = {
 			isa = PBXGroup;
 			children = (
-				9F4439192C2302CF00C87E38 /* AppDelegate.swift */,
-				9F44391B2C2302CF00C87E38 /* SceneDelegate.swift */,
-				9F44391D2C2302CF00C87E38 /* ViewController.swift */,
-				9F4439222C2302D000C87E38 /* Assets.xcassets */,
-				9F4439242C2302D000C87E38 /* LaunchScreen.storyboard */,
+				9F4439312C230B9300C87E38 /* Models */,
+				9F4439302C230B8A00C87E38 /* Protocols */,
+				9F44392F2C230B8100C87E38 /* Controllers */,
+				9F44392E2C230B7500C87E38 /* Views */,
+				9F44392D2C230B5900C87E38 /* Resources */,
 				9F4439272C2302D000C87E38 /* Info.plist */,
 			);
 			path = "notes-clone";
+			sourceTree = "<group>";
+		};
+		9F44392D2C230B5900C87E38 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9F4439222C2302D000C87E38 /* Assets.xcassets */,
+				9F4439242C2302D000C87E38 /* LaunchScreen.storyboard */,
+				9F44391B2C2302CF00C87E38 /* SceneDelegate.swift */,
+				9F4439192C2302CF00C87E38 /* AppDelegate.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		9F44392E2C230B7500C87E38 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9F4439322C23103400C87E38 /* NotesTable.swift */,
+				9F4439362C23160400C87E38 /* NotesTableCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9F44392F2C230B8100C87E38 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9F44391D2C2302CF00C87E38 /* NotesTableController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		9F4439302C230B8A00C87E38 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				9F4439342C23106100C87E38 /* ViewCode.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		9F4439312C230B9300C87E38 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,7 +183,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F44391E2C2302CF00C87E38 /* ViewController.swift in Sources */,
+				9F4439332C23103400C87E38 /* NotesTable.swift in Sources */,
+				9F4439352C23106100C87E38 /* ViewCode.swift in Sources */,
+				9F4439372C23160400C87E38 /* NotesTableCell.swift in Sources */,
+				9F44391E2C2302CF00C87E38 /* NotesTableController.swift in Sources */,
 				9F44391A2C2302CF00C87E38 /* AppDelegate.swift in Sources */,
 				9F44391C2C2302CF00C87E38 /* SceneDelegate.swift in Sources */,
 			);
