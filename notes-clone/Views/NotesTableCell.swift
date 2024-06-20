@@ -35,7 +35,7 @@ final class NotesTableCell: UITableViewCell {
     }
 }
 
-extension NotesTableCell: ViewCode {
+extension NotesTableCell: ViewCodeProtocol {
     func addSubviews() {
         self.addSubview(title)
         self.addSubview(subtitle)

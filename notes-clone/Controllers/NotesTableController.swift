@@ -10,12 +10,21 @@ import UIKit
 class NotesTableController: UIViewController {
 
     let notesView = NotesTable()
+    private let notesController: NoteController
+    
+    init(notesController: NoteController) {
+        self.notesController = notesController
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func loadView() {
         view = notesView
     }
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         notesView.tableView.delegate = self
@@ -27,11 +36,13 @@ class NotesTableController: UIViewController {
 extension NotesTableController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return notesController.getNote().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NotesTableCell.reuseIdentifier, for: indexPath)
+        let getTitles = notesController.getNote().map({ $0.title })
+        let getSubtitles = notesController.getNote().map({ $0.description })
         
         guard let cell = cell as? NotesTableCell else {
             let cell = NotesTableCell()
@@ -39,8 +50,8 @@ extension NotesTableController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         
-        cell.title.text = "Titulo da Nota"
-        cell.subtitle.text = "Subtitulo da nota"
+        cell.title.text = getTitles[indexPath.row]
+        cell.subtitle.text = getSubtitles[indexPath.row]
         
         return cell
     }

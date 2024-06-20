@@ -24,7 +24,7 @@ final class NotesTable: UIView {
     }
 }
 
-extension NotesTable: ViewCode {
+extension NotesTable: ViewCodeProtocol {
     func addSubviews() {
         self.addSubview(tableView)
     }
