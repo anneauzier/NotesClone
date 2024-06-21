@@ -9,9 +9,15 @@ import Foundation
 
 struct Note {
     let id: UUID = .init()
-    let data: Date = .init()
+    let date: Date = .init()
     
     let title: String
     let description: String
     let isLocket: Bool = false
+    
+    init(title: String = "", description: String = "") {
+        self.title = title
+        self.description = description
+    }
 }
+

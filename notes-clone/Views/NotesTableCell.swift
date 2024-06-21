@@ -13,7 +13,7 @@ final class NotesTableCell: UITableViewCell {
     
     lazy var title: UILabel = {
         let title = UILabel()
-        title.font = UIFont.preferredFont(forTextStyle: .title1)
+        title.font = UIFont.preferredFont(forTextStyle: .title2)
         title.font = UIFont.boldSystemFont(ofSize: title.font.pointSize)
         return title
     }()

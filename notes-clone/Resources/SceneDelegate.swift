@@ -17,11 +17,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         self.window = UIWindow(windowScene: windowScene)
         let noteController = NoteController(service: NotesMockupService())
-        let navigationController = UINavigationController(rootViewController: NotesTableController(notesController: noteController))
-        
-        self.window?.rootViewController = navigationController
+        let coordinator = Coordinator(root: NoteRouter.notes(noteController))
+//        let navigationController = UINavigationController(rootViewController: NotesTableController(notesController: noteController, coordinator: coordinator))
+    
+        self.window?.rootViewController = coordinator.navigationController
         self.window?.makeKeyAndVisible()
-        
+        coordinator.start()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

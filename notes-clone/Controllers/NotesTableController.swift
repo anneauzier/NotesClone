@@ -10,10 +10,12 @@ import UIKit
 class NotesTableController: UIViewController {
 
     let notesView = NotesTable()
+    let coordinator: Coordinator
     private let notesController: NoteController
     
-    init(notesController: NoteController) {
+    init(notesController: NoteController, coordinator: Coordinator) {
         self.notesController = notesController
+        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -27,8 +29,13 @@ class NotesTableController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        title = "My Notes"
+
         notesView.tableView.delegate = self
         notesView.tableView.dataSource = self
+
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 
 }
@@ -54,5 +61,11 @@ extension NotesTableController: UITableViewDelegate, UITableViewDataSource {
         cell.subtitle.text = getSubtitles[indexPath.row]
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+        let note = notesController.getNote()[indexPath.row]
+        coordinator.show(.writeNote(notesController, note))
     }
 }
