@@ -11,7 +11,7 @@ final class WriteNoteController: UIViewController {
     
     let writeNoteView = WriteNote()
     let coordinator: Coordinator
-    
+
     init(coordinator: Coordinator) {
         self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
@@ -22,7 +22,7 @@ final class WriteNoteController: UIViewController {
     }
     
     override func viewDidLoad() {
+        
         view = writeNoteView
-        view.backgroundColor = .brown
     }
 }

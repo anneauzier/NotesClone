@@ -9,9 +9,10 @@ import UIKit
 
 class WriteNote: UIView {
     
-    lazy var titleView: UITextView = {
-        let title = UITextView()
+    lazy var titleView: UITextField = {
+        let title = UITextField()
         title.font = UIFont.preferredFont(forTextStyle: .title1)
+        title.placeholder = "Title"
         return title
     }()
     
@@ -29,6 +30,10 @@ class WriteNote: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        setupAdditionalConfiguration()
+    }
 }
 
 extension WriteNote: ViewCodeProtocol {
@@ -42,11 +47,18 @@ extension WriteNote: ViewCodeProtocol {
         textView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            titleView.topAnchor.constraint(equalTo: topAnchor, constant: 5),
-            titleView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            titleView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            titleView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 17),
+            titleView.trailingAnchor.constraint(equalTo: trailingAnchor),
         
-            textView.topAnchor.constraint(equalTo: titleView.bottomAnchor, constant: 10),
-            textView.leadingAnchor.constraint(equalTo: titleView.leadingAnchor)
+            textView.topAnchor.constraint(equalTo: titleView.bottomAnchor),
+            textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 17),
+            textView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            textView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+    }
+    
+    func setupAdditionalConfiguration() {
+        backgroundColor = traitCollection.userInterfaceStyle == .light ? .white : .black
     }
 }

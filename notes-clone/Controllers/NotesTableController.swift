@@ -36,6 +36,12 @@ class NotesTableController: UIViewController {
         notesView.tableView.dataSource = self
 
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), 
+                                                            style: .plain, target: self, action: #selector(addNewNote))
+    }
+    
+    @objc private func addNewNote() {
+        coordinator.show(.writeNote(notesController))
     }
 
 }
@@ -69,3 +75,4 @@ extension NotesTableController: UITableViewDelegate, UITableViewDataSource {
         coordinator.show(.writeNote(notesController, note))
     }
 }
+
