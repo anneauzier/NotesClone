@@ -9,17 +9,7 @@ import UIKit
 
 // MARK: É só para treinar o Coordinator Pattern mesmo hahaha
 
-protocol NavigationRouter {
-    var transition: NavigationTransitionStyle { get }
-    func viewController(coordinator: Coordinator) -> UIViewController
-}
-
-enum NavigationTransitionStyle {
-    case push
-}
-
 final class Coordinator {
-
     private let root: NoteRouter
     let navigationController: UINavigationController
     
@@ -27,16 +17,16 @@ final class Coordinator {
         self.root = root
         self.navigationController = navigationController
     }
-    
-    func start() {
-        show(root)
-    }
-    
-    func show(_ route: NoteRouter, animated: Bool = true) {
+
+    func show(_ route: NoteRouter) {
         switch route.transition {
         case .push:
-            navigationController.pushViewController(route.viewController(coordinator: self), animated: animated)
+            navigationController.pushViewController(route.viewController(coordinator: self), animated: true)
         }
+    }
+
+    func start() {
+        self.show(root)
     }
 }
 

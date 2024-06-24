@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9F2176A22C245CE700E07807 /* NoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2176A12C245CE700E07807 /* NoteController.swift */; };
+		9F391B612C29BEF900868A68 /* NoteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F391B602C29BEF900868A68 /* NoteRouter.swift */; };
 		9F44391A2C2302CF00C87E38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4439192C2302CF00C87E38 /* AppDelegate.swift */; };
 		9F44391C2C2302CF00C87E38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F44391B2C2302CF00C87E38 /* SceneDelegate.swift */; };
 		9F44391E2C2302CF00C87E38 /* NotesTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F44391D2C2302CF00C87E38 /* NotesTableController.swift */; };
@@ -23,12 +24,12 @@
 		9FEF32592C25BE2B00E9913B /* WriteNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEF32582C25BE2B00E9913B /* WriteNote.swift */; };
 		9FEF325B2C25C1CB00E9913B /* WriteNoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEF325A2C25C1CB00E9913B /* WriteNoteController.swift */; };
 		9FEF325E2C25D23100E9913B /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEF325D2C25D23100E9913B /* Coordinator.swift */; };
-		9FEF32602C25D6BC00E9913B /* NoteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEF325F2C25D6BC00E9913B /* NoteRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9F2176A12C245CE700E07807 /* NoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteController.swift; sourceTree = "<group>"; };
 		9F2176A32C24709B00E07807 /* notes-clone.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "notes-clone.entitlements"; sourceTree = "<group>"; };
+		9F391B602C29BEF900868A68 /* NoteRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRouter.swift; sourceTree = "<group>"; };
 		9F4439162C2302CF00C87E38 /* notes-clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "notes-clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F4439192C2302CF00C87E38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F44391B2C2302CF00C87E38 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,7 +47,6 @@
 		9FEF32582C25BE2B00E9913B /* WriteNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteNote.swift; sourceTree = "<group>"; };
 		9FEF325A2C25C1CB00E9913B /* WriteNoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteNoteController.swift; sourceTree = "<group>"; };
 		9FEF325D2C25D23100E9913B /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		9FEF325F2C25D6BC00E9913B /* NoteRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,7 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				9FEF325D2C25D23100E9913B /* Coordinator.swift */,
-				9FEF325F2C25D6BC00E9913B /* NoteRouter.swift */,
+				9F391B602C29BEF900868A68 /* NoteRouter.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -230,7 +230,7 @@
 				9F44391E2C2302CF00C87E38 /* NotesTableController.swift in Sources */,
 				9FEF32592C25BE2B00E9913B /* WriteNote.swift in Sources */,
 				9F44391A2C2302CF00C87E38 /* AppDelegate.swift in Sources */,
-				9FEF32602C25D6BC00E9913B /* NoteRouter.swift in Sources */,
+				9F391B612C29BEF900868A68 /* NoteRouter.swift in Sources */,
 				9FEF325B2C25C1CB00E9913B /* WriteNoteController.swift in Sources */,
 				9F44393F2C2329DB00C87E38 /* NotesServiceProtocol.swift in Sources */,
 				9F44391C2C2302CF00C87E38 /* SceneDelegate.swift in Sources */,

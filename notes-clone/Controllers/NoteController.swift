@@ -13,7 +13,7 @@ final class NoteController {
     init(service: NotesServiceProtocol) {
         self.service = service
     }
-    
+
     // TODO: Fazer tratamento de erro
 
     func getNote() -> [Note] {
