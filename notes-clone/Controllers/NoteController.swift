@@ -9,13 +9,12 @@ import Foundation
 
 final class NoteController {
     private let service: NotesServiceProtocol
-    
+
     init(service: NotesServiceProtocol) {
         self.service = service
     }
 
     // TODO: Fazer tratamento de erro
-
     func getNote() -> [Note] {
         do {
             return try service.getNotes()
@@ -24,29 +23,28 @@ final class NoteController {
             return []
         }
     }
-    
-    func createNote(_ note: Note) throws {
+
+    func createNote(_ note: Note) {
         do {
             return try service.createNote(note)
         } catch {
             print(error.localizedDescription)
         }
     }
-    
-    func editNote(_ note: Note) throws {
+
+    func editNote(_ note: Note) {
         do {
             return try service.editNote(note)
         } catch {
             print(error.localizedDescription)
         }
     }
-    
-    func deleteNote(by id: UUID) throws {
+
+    func deleteNote(by id: UUID) {
         do {
             return try service.deleteNote(by: id)
         } catch {
             print(error.localizedDescription)
         }
     }
-    
 }

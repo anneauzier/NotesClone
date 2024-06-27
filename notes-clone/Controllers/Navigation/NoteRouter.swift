@@ -36,8 +36,8 @@ enum NoteRouter: NavigationRouter {
         case .notes(let noteController):
             return NotesTableController(notesController: noteController, coordinator: coordinator)
         
-        case .writeNote( _, _):
-            return WriteNoteController(coordinator: coordinator)
+        case .writeNote(let noteController, let note):
+            return WriteNoteController(note: note, coordinator: coordinator, notesController: noteController)
         }
     }
 }

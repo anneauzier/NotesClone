@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         self.window = UIWindow(windowScene: windowScene)
 
-        let noteController = NoteController(service: NotesMockupService())
+        let noteController = NoteController(service: NotesService())
         let coordinator = Coordinator(root: NoteRouter.notes(noteController))
 
         coordinator.start()
