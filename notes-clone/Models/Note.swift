@@ -7,13 +7,12 @@
 
 import Foundation
 
-struct Note {
+class Note {
     let id: UUID = .init()
     let date: Date = .init()
     
-    let title: String
-    let description: String
-    let isLocket: Bool = false
+    var title: String
+    var description: String
     
     init(title: String = "", description: String = "") {
         self.title = title

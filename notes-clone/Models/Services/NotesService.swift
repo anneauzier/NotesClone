@@ -21,12 +21,14 @@ class NotesService: NotesServiceProtocol {
     
     func createNote(_ note: Note) throws {
         let record = CKRecord(recordType: "NotesData")
-        record["title"] = note.title as CKRecordValue
-        record["description"] = note.description as CKRecordValue
-        
-        database.save(record) { _, error in
-            if let error = error {
-                print(error.localizedDescription )
+        record.setValue(note.title, forKey: "title")
+        record.setValue(note.description, forKey: "description")
+
+        database.save(record) { saveRecord, error in
+            if error == nil {
+                print("Record Save")
+            } else {
+                print("Record not saved")
             }
         }
     }

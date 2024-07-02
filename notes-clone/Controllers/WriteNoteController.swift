@@ -31,10 +31,44 @@ final class WriteNoteController: UIViewController {
     }
     
     override func viewDidLoad() {
-        view = writeNoteView
+        super.viewDidLoad()
+
+        writeNoteView.titleView.delegate = self
+        writeNoteView.textView.delegate = self
         
+        writeNoteView.titleView.text = note.title
+        writeNoteView.textView.text = note.description
+
+        view = writeNoteView
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        saveTitle()
+        saveText()
+
         isThisNewNote ? notesController.createNote(note) : notesController.editNote(note)
+    }
+    
+    func saveTitle() {
+        note.title = writeNoteView.titleView.text ?? ""
+        
+        if note.title.isEmpty {
+            note.title = "Untitled"
+        }
+    }
+    
+    func saveText() {
+        note.description = writeNoteView.textView.text ?? ""
     }
 }
 
+
+extension WriteNoteController: UITextFieldDelegate, UITextViewDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        saveTitle()
+    }
+
+    func textViewDidEndEditing(_ textView: UITextView) {
+        saveText()
+    }
+}
 
