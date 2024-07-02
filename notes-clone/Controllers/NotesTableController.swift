@@ -12,6 +12,8 @@ class NotesTableController: UIViewController {
     let notesView = NotesTable()
     let coordinator: Coordinator
     private let notesController: NoteController
+
+    var notes = [Note]()
     
     init(notesController: NoteController, coordinator: Coordinator) {
         self.notesController = notesController
@@ -21,6 +23,26 @@ class NotesTableController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.notesView.tableView.reloadData()
+    }
+
+    func fetchNotes() {
+        notesController.getNotes { [weak self] fetchedNotes, error in
+            if let error = error {
+                print("error \(error.localizedDescription)")
+                return
+            }
+            if let fetchedNotes = fetchedNotes {
+                self?.notes = fetchedNotes
+                DispatchQueue.main.async {
+                    self?.notesView.tableView.reloadData()
+                }
+            }
+        }
     }
 
     override func loadView() {
@@ -38,24 +60,25 @@ class NotesTableController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), 
                                                             style: .plain, target: self, action: #selector(addNewNote))
+        
+        fetchNotes()
     }
-    
+
     @objc private func addNewNote() {
         coordinator.show(.writeNote(notesController))
     }
-
 }
 
 extension NotesTableController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return notesController.getNote().count
+        return notes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NotesTableCell.reuseIdentifier, for: indexPath)
-        let getTitles = notesController.getNote().map({ $0.title })
-        let getSubtitles = notesController.getNote().map({ $0.description })
+        let getTitles = notes.map({ $0.title })
+        let getSubtitles = notes.map({ $0.description })
         
         guard let cell = cell as? NotesTableCell else {
             let cell = NotesTableCell()
@@ -71,7 +94,7 @@ extension NotesTableController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
-        let note = notesController.getNote()[indexPath.row]
+        let note = notes[indexPath.row]
         coordinator.show(.writeNote(notesController, note))
     }
 }

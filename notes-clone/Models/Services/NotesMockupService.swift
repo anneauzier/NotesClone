@@ -8,7 +8,7 @@
 import Foundation
 
 final class NotesMockupService: NotesServiceProtocol {
-    
+
     var notes: [Note] = []
     
     init() {
@@ -17,10 +17,10 @@ final class NotesMockupService: NotesServiceProtocol {
         }
     }
 
-    func getNotes() -> [Note] {
-        return notes
+    func getNotes(completion: @escaping ([Note]?, (any Error)?) -> Void) {
+        completion(notes, nil)
     }
-    
+
     func createNote(_ note: Note) throws {
         notes.append(note)
     }

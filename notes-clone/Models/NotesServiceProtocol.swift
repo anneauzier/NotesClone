@@ -8,7 +8,7 @@
 import Foundation
 
 protocol NotesServiceProtocol {
-    func getNotes() throws -> [Note]
+    func getNotes(completion: @escaping ([Note]?, Error?) -> Void)
     func createNote(_ note: Note) throws
     func editNote(_ note: Note) throws
     func deleteNote(by id: UUID) throws

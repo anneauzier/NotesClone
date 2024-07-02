@@ -15,12 +15,13 @@ final class NoteController {
     }
 
     // TODO: Fazer tratamento de erro
-    func getNote() -> [Note] {
-        do {
-            return try service.getNotes()
-        } catch {
-            print(error.localizedDescription)
-            return []
+    func getNotes(completion: @escaping ([Note]?, Error?) -> Void) {
+        service.getNotes { notes, error in
+            if error == nil {
+                completion(notes, nil)
+            } else {
+                completion(nil, error)
+            }
         }
     }
 
