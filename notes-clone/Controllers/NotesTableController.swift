@@ -24,22 +24,20 @@ class NotesTableController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.notesView.tableView.reloadData()
-    }
 
-    func fetchNotes() {
+    @objc func fetchNotes() {
         notesController.getNotes { [weak self] fetchedNotes, error in
             if let error = error {
                 print("error \(error.localizedDescription)")
                 return
             }
+            
             if let fetchedNotes = fetchedNotes {
-                self?.notes = fetchedNotes
                 DispatchQueue.main.async {
+                    self?.notes.removeAll()
+                    self?.notes = fetchedNotes
                     self?.notesView.tableView.reloadData()
+                    self?.notesView.tableView.refreshControl?.endRefreshing()
                 }
             }
         }
@@ -57,11 +55,20 @@ class NotesTableController: UIViewController {
         notesView.tableView.delegate = self
         notesView.tableView.dataSource = self
 
+        let control = UIRefreshControl()
+        control.addTarget(self, action: #selector(fetchNotes), for: .valueChanged)
+        notesView.tableView.refreshControl = control
+
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), 
                                                             style: .plain, target: self, action: #selector(addNewNote))
         
         fetchNotes()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.notesView.tableView.reloadData()
     }
 
     @objc private func addNewNote() {

@@ -31,7 +31,7 @@ final class NotesMockupService: NotesServiceProtocol {
     }
     
     func deleteNote(by id: UUID) throws {
-        guard let index = notes.firstIndex(where: { $0.id == id }) else { return }
-        notes.remove(at: index)
+//        guard let index = notes.firstIndex(where: { $0.id == id }) else { return }
+//        notes.remove(at: index)
     }
 }

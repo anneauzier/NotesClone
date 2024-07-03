@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import CloudKit
 
 class Note {
-    let id: UUID = .init()
+    let id: CKRecord.ID? = CKRecord.ID()
     let date: Date = .init()
     
     var title: String

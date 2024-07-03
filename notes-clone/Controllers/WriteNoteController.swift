@@ -41,6 +41,7 @@ final class WriteNoteController: UIViewController {
 
         view = writeNoteView
     }
+
     override func viewWillDisappear(_ animated: Bool) {
         saveTitle()
         saveText()
