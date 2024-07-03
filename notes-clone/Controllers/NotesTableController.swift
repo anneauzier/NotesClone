@@ -42,6 +42,11 @@ class NotesTableController: UIViewController {
             }
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.notesView.tableView.reloadData()
+    }
 
     override func loadView() {
         view = notesView
@@ -64,11 +69,6 @@ class NotesTableController: UIViewController {
                                                             style: .plain, target: self, action: #selector(addNewNote))
         
         fetchNotes()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.notesView.tableView.reloadData()
     }
 
     @objc private func addNewNote() {
