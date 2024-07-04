@@ -104,5 +104,42 @@ extension NotesTableController: UITableViewDelegate, UITableViewDataSource {
         let note = notes[indexPath.row]
         coordinator.show(.writeNote(notesController, note))
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let note = notes.map({ $0.id })
+
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] action, view, completion in
+            
+            guard let self = self else {
+                completion(false)
+                return
+            }
+            
+            let alert = UIAlertController(title: "Do you want to delete this note?",
+                                          message: "This action cannot be undone.",
+                                          preferredStyle: .alert)
+
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+                 completion(true)
+            }
+
+            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+//                self?.notesController.deleteNote(by: note)
+                
+                tableView.reloadData()
+                completion(true)
+            }
+            
+            alert.addAction(cancelAction)
+            alert.addAction(deleteAction)
+            
+            self.present(alert, animated: true)
+        }
+        
+        deleteAction.image = UIImage(systemName: "trash")
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
 }
 
