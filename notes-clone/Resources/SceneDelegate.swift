@@ -5,7 +5,7 @@
 //  Created by Anne Auzier on 19/06/24.
 //
 
-import UIKit
+import UIKit 
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -16,11 +16,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         self.window = UIWindow(windowScene: windowScene)
-        let navigationController = UINavigationController(rootViewController: NotesTableController())
+
+        let noteController = NoteController(service: NotesService())
+        let coordinator = Coordinator(root: NoteRouter.notes(noteController))
+
+        coordinator.start()
         
-        self.window?.rootViewController = navigationController
+        self.window?.rootViewController = coordinator.navigationController
         self.window?.makeKeyAndVisible()
-        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
