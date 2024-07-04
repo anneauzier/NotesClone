@@ -93,9 +93,3 @@ class NotesService: NotesServiceProtocol {
     
 }
 
-//                if let saveRecord = saveRecord {
-//                    note.id = saveRecord.recordID
-//                    print("Record saved with ID: \(saveRecord.recordID.recordName)")
-//                } else {
-//                    print("Record not saved")
-//                }
