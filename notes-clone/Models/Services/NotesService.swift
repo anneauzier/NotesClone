@@ -101,17 +101,3 @@ class NotesService: NotesServiceProtocol {
         }
     }
 }
-
-//func deleteNote(by id: CKRecord.ID, completion: @escaping (Error?) -> Void) {
-//    database.delete(withRecordID: id) { recordID, error in
-//        DispatchQueue.main.async {
-//            if let error = error {
-//                print("Erro ao deletar o registro: \(error.localizedDescription)")
-//                completion(error)
-//            } else {
-//                print("Nota deletada com sucesso")
-//                completion(nil)
-//            }
-//        }
-//    }
-//}
