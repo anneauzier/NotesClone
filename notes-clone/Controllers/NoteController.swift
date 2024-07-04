@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CloudKit
 
 final class NoteController {
     private let service: NotesServiceProtocol
@@ -41,9 +42,15 @@ final class NoteController {
         }
     }
 
-    func deleteNote(by id: UUID) {
+    func deleteNote(by id: CKRecord.ID ) {
         do {
-            return try service.deleteNote(by: id)
+            return try service.deleteNote(by: id) { error in
+                if let error = error {
+                    print("Erro ao deletar nota \(error.localizedDescription)")
+                } else {
+                    print("Nota deletada")
+                }
+            }
         } catch {
             print(error.localizedDescription)
         }

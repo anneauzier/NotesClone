@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CloudKit
 
 final class NotesMockupService: NotesServiceProtocol {
 
@@ -29,9 +30,13 @@ final class NotesMockupService: NotesServiceProtocol {
         guard let noteIndex = notes.firstIndex(where: { $0.id == note.id }) else { return }
         notes[noteIndex] = note
     }
-    
-    func deleteNote(by id: UUID) throws {
+
+    func deleteNote(by id: CKRecord.ID, completion: @escaping ((any Error)?) -> Void) throws {
+        //
+    }
+
+//    func deleteNote(by id: UUID) throws {
 //        guard let index = notes.firstIndex(where: { $0.id == id }) else { return }
 //        notes.remove(at: index)
-    }
+//    }
 }

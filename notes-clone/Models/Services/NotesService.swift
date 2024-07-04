@@ -8,7 +8,7 @@
 import CloudKit
 
 class NotesService: NotesServiceProtocol {
-    
+
     private let database = CKContainer(identifier: "iCloud.NotesCloud").publicCloudDatabase
     var fetchedNotes = [Note]()
     
@@ -87,9 +87,31 @@ class NotesService: NotesServiceProtocol {
         }
     }
 
-    func deleteNote(by id: UUID) throws {
-        //
+    func deleteNote(by id: CKRecord.ID, completion: @escaping ((any Error)?) -> Void) throws {
+        database.delete(withRecordID: id) { recordID, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    print("Erro ao deletar o registro: \(error.localizedDescription)")
+                    completion(error)
+                } else {
+                    print("Nota deletada com sucesso")
+                    completion(nil)
+                }
+            }
+        }
     }
-    
 }
 
+//func deleteNote(by id: CKRecord.ID, completion: @escaping (Error?) -> Void) {
+//    database.delete(withRecordID: id) { recordID, error in
+//        DispatchQueue.main.async {
+//            if let error = error {
+//                print("Erro ao deletar o registro: \(error.localizedDescription)")
+//                completion(error)
+//            } else {
+//                print("Nota deletada com sucesso")
+//                completion(nil)
+//            }
+//        }
+//    }
+//}

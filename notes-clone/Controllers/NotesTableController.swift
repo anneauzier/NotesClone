@@ -106,8 +106,8 @@ extension NotesTableController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        
-        let note = notes.map({ $0.id })
+ 
+        let note = self.notes[indexPath.row]
 
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] action, view, completion in
             
@@ -125,9 +125,10 @@ extension NotesTableController: UITableViewDelegate, UITableViewDataSource {
             }
 
             let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
-//                self?.notesController.deleteNote(by: note)
-                
-                tableView.reloadData()
+                guard let noteID = note.id else { return }
+                self?.notesController.deleteNote(by: noteID)
+
+                self?.notesView.tableView.reloadData()
                 completion(true)
             }
             
